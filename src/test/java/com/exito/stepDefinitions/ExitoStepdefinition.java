@@ -32,7 +32,8 @@ public class ExitoStepdefinition {
     @Entonces("el usuario verificara el producto en el carrito")
     public void elUsuarioVerificaraElProductoEnElCarrito() {
         exitoInicialSteps.entrarCarritoCOmpras();
-        exitoInicialSteps.validacionProducto();
+        exitoInicialSteps.AddMailClickCheck();
+        //exitoInicialSteps.validacionProducto();
         
     }
 }

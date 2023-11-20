@@ -13,6 +13,11 @@ public class Esperas {
         wait.until(
                 ExpectedConditions.elementToBeClickable(by)
         );
-
+    }
+    public static void esperaVisible(WebDriver webDriver, By by) {
+        WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(2));
+        wait.until(
+                ExpectedConditions.visibilityOfElementLocated(by)
+        );
     }
 }

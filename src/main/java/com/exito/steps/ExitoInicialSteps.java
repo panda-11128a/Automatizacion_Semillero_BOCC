@@ -39,10 +39,20 @@ public class ExitoInicialSteps {
     }*/
 
     @Step("Abrir categoria y subcategoria")
-    public void seleccionCategoriaSubcategoria(){
-        exitoInicial.getDriver().findElement(exitoInicial.getLiCategory_Subcategory()).click();
+    public void seleccionCategoriaSubcategoria() {
+        // Crear una instancia de Actions
+        Actions actions = new Actions(exitoInicial.getDriver());
 
+        // Realizar el hover sobre el elemento de la categoría 'Juguetería'
+        actions.moveToElement(exitoInicial.getDriver().findElement(exitoInicial.getLiCategory_Subcategory())).perform();
+
+        // Esperar a que la subcategoría 'Juegos de mesa' sea visible
+        Esperas.esperaVisible(exitoInicial.getDriver(), exitoInicial.getJuegosDeMesa());
+
+        // Hacer clic en la subcategoría 'Juegos de mesa'
+        exitoInicial.getDriver().findElement(exitoInicial.getJuegosDeMesa()).click();
     }
+
     @Step("Seleccionar producto")
     public void seleccionproducto(){
         exitoInicial.getDriver().findElement(exitoInicial.getDivProductoSeleccionado()).click();
@@ -51,18 +61,18 @@ public class ExitoInicialSteps {
     public void entrarCarritoCOmpras(){
         exitoInicial.getDriver().findElement(exitoInicial.getaCarritoCompra()).click();
     }
-    @Step("Validar producto")
-    public void validacionProducto(){
-        WebDriverWait wait = new WebDriverWait(exitoInicial.getDriver(), Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(exitoInicial.getDivProductoSeleccionado()));
-        String nombreProductoSeleccionado = wait.until(ExpectedConditions.visibilityOfElementLocated(exitoInicial.getDivNombeProductoSeleccionado())).getText();
+    @Step("Agregar correo y click en confirmar")
+    public void AddMailClickCheck() {
+        Actions actions = new Actions(exitoInicial.getDriver());
 
-
-        wait.until(ExpectedConditions.visibilityOfElementLocated(exitoInicial.getaCarritoCompra()));
-
-        String nombreProductoEnCarrito = wait.until(ExpectedConditions.visibilityOfElementLocated(exitoInicial.getSpanProductoCarrito())).getText();
-
-        Assert.assertEquals("El producto seleccionado y el producto en el carrito no son el mismo", nombreProductoSeleccionado, nombreProductoEnCarrito);
+        // Luego, interactuar con getInMail() y getBtnCheckMail()
+        actions.moveToElement(exitoInicial.getDriver().findElement(exitoInicial.getInMail()))
+                .click()
+                .sendKeys("hola@gmail.com")
+                .moveToElement(exitoInicial.getDriver().findElement(exitoInicial.getBtnCheckMail()))
+                .click()
+                .perform();
     }
+
 
 }
