@@ -48,7 +48,6 @@ public class YoutubestepDefinitions {
     public void elUsuarioHaceClicEnElVideoDeLaCanciónYQuitaLaPublicidadDelVideo() {
         theActorInTheSpotlight().attemptsTo(
                 SeleccionCancionAleatorio.conNombre(nombreCancion)
-                //QuitarPublicidad.enVideo()
         );
     }
 
